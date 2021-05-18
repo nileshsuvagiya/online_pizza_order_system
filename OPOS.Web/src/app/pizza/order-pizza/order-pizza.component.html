@@ -1,0 +1,63 @@
+<div fxLayout="row wrap">
+  <div *ngFor="let pizza of pizzasList"
+    fxFlex="0 0 100%"
+    [ngStyle.gt-sm]="{ 'margin.px': 8 }"
+    fxFlex.gt-sm="0 0 calc(50% - 16px)">
+    <mat-card>
+      <mat-grid-list cols="3" rowHeight="2:1">
+        <mat-grid-tile>{{ pizza.name | titlecase }}</mat-grid-tile>
+        <mat-grid-tile>{{ pizza.description }}</mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="2"
+          ><img
+            [src]="'../../../assets/images/' + pizza.image"
+            [alt]="pizza.name"
+            style="object-fit: cover; height: inherit; width: inherit"
+        /></mat-grid-tile>
+        <mat-grid-tile
+          ><mat-icon [style.color]="pizza.type === 'veg' ? 'green' : 'red'">
+            local_pizza</mat-icon
+          ></mat-grid-tile
+        >
+        <mat-grid-tile>{{ pizza.id | ingredients: pizzasList }}</mat-grid-tile>
+        <mat-grid-tile>{{ pizza.price | currency: "INR" }}</mat-grid-tile>
+        <mat-grid-tile>{{ pizza.id | toppings: pizzasList }}</mat-grid-tile>
+        <mat-grid-tile>
+          <div *ngIf="cartButtonToggle && pizza.id !== selectedPizzaId && !selectedPizzaList[pizza.id]">
+            <button
+              mat-raised-button
+              color="gold"
+              (click)="cartToggler(pizza.id)">
+              Add to Cart
+            </button>
+          </div>
+          <div *ngIf="!cartButtonToggle || pizza.id === selectedPizzaId || selectedPizzaList[pizza.id]">
+            <button
+              mat-raised-button
+              color="gold"
+              (click)="decrementor(pizza.id)">
+              -
+            </button>
+            <span>{{ selectedPizzaList[pizza.id] ? selectedPizzaList[pizza.id] : 0 }}</span>
+            <button
+              mat-raised-button
+              color="gold"
+              (click)="incrementor(pizza.id)">
+              +
+            </button>
+          </div></mat-grid-tile>
+      </mat-grid-list>
+    </mat-card>
+  </div>
+</div>
+<mat-toolbar class="position-fixed">
+  Total : {{ totalPrice | currency: "INR" }}
+  <span class="fill-end"> </span>
+  <button
+    mat-raised-button
+    color="gold"
+    (click)="checkoutPizza()"
+    [routerLink]="['/addToppings']"
+  >
+    Add Toppings
+  </button>
+</mat-toolbar>

@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OPOS.DataSource\OPOS.DataSource.csproj" />
+    <ProjectReference Include="..\OPOS.Model\OPOS.Model.csproj" />
+    <ProjectReference Include="..\OPOS.Utility\OPOS.Utility.csproj" />
+  </ItemGroup>
+
+
+</Project>

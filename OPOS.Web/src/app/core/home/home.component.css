@@ -1,0 +1,18 @@
+.home-card {
+    width: 100%;
+  }
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center
+  }
+  
+  .image {
+    max-width: 100%;
+    display:inline;
+  }
+  
+  .text {
+    font-size: 14px;
+    padding-left: 20px;
+  }

@@ -1,0 +1,32 @@
+.cart-card {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    align-self: center;
+  }
+  table {
+    width: 100%;
+    text-align: justify;
+  }
+  
+  h2 {
+    color: white;
+  }
+  
+  .mat-raised-button.mat-gold {
+    background-color: #f9aa33;
+    color: white;
+  }
+  
+  .footer {
+    align-items: center;
+    float: right;
+    align-content: right;
+  }
+  
+  .order-text {
+    padding: 20px;
+    background: #f0e68c;
+    align-items: center;
+  }
+  

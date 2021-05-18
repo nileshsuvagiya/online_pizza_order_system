@@ -1,0 +1,53 @@
+<div fxLayout="row wrap">
+  <div
+    fxFlex="0 0 100%"
+    [ngStyle.gt-sm]="{ 'margin.px': 8 }"
+    fxFlex.gt-sm="0 0 calc(100% - 16px)"
+  >
+    <mat-card>
+      <mat-card-content>
+        <div class="container">
+            <div class="name" *ngFor="let topping of toppingsFiltered">
+                <div [disabled]="!isBaseOfPizzaReady"
+                  (click)="selectToppings(topping)"
+                  [ngStyle]="{ cursor: isBaseOfPizzaReady ? 'pointer' : 'none' }"
+                >
+                  <span
+                    class=" icon {{ topping.tname.toLocaleLowerCase() }} "
+                  ></span>
+                  <span>
+                    {{ topping.tname }}
+                  </span>
+                </div>
+              </div>
+        </div>
+      </mat-card-content>
+      <mat-card-content>
+        <div #pizza></div>
+      </mat-card-content>
+      <!-- <mat-card-actions>
+        <div class="text-center">
+          <a mat-raised-button color="gold" (click)="createPizza()"
+            >Create Pizza</a
+          >
+        </div>
+      </mat-card-actions> -->
+    </mat-card>
+  </div>
+</div>
+<mat-toolbar class="position-fixed">
+  Total : {{ totalPrice | currency: "INR" }}
+  <span class="fill-end"> </span>
+  <button mat-raised-button color="gold" (click)="createPizza()">
+    Create Pizza
+  </button>
+  <button
+    [disabled]="!isBaseOfPizzaReady"
+    mat-raised-button
+    color="gold"
+    (click)="checkoutPizza()"
+    [routerLink]="['/shoppingcart']"
+  >
+    Checkout
+  </button>
+</mat-toolbar>

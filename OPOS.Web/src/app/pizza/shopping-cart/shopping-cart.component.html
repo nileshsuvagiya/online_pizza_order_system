@@ -1,0 +1,79 @@
+<!-- <p>{{ pizzaPurchased | json }}</p> -->
+
+<mat-card class="cart-card">
+    <mat-card-header>
+      <mat-card-title>Order Summary!</mat-card-title>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <table mat-table [dataSource]="pizzaPurchased" class="mat-elevation-z8">
+        <ng-container matColumnDef="pName">
+          <th mat-header-cell *matHeaderCellDef>
+            <h2>Pizzas</h2>
+          </th>
+          <td mat-cell *matCellDef="let pizza">{{ pizza.pName | titlecase }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="pQuantity">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let pizza">
+            <span>X&nbsp;</span>{{ pizza.pQuantity }}
+          </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="pCost">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let pizza">
+            {{ pizza.pCost | currency: "INR" }}
+          </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="pizzaColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: pizzaColumns"></tr>
+      </table>
+    </mat-card-content>
+  
+    <mat-card-content>
+      <table mat-table [dataSource]="toppingPurchased" class="mat-elevation-z8">
+        <ng-container matColumnDef="tName">
+          <th mat-header-cell *matHeaderCellDef>
+            <h2>Toppings</h2>
+          </th>
+          <td mat-cell *matCellDef="let topping">
+            {{ topping.tName | titlecase }}
+          </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="tQuantity">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let topping">
+            <span>X&nbsp;</span>{{ topping.tQuantity }}
+          </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="tCost">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let topping">
+            {{ topping.tCost | currency: "INR" }}
+          </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="toppingColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: toppingColumns"></tr>
+      </table>
+  
+      <mat-divider></mat-divider>
+      <mat-card-actions>
+        <span>Total : {{ totalCost | currency: "INR" }}</span>
+        <button mat-raised-button color="gold" (click)="orderComplete()">
+          Complete Order
+        </button>
+      </mat-card-actions>
+    </mat-card-content>
+  </mat-card>
+  
+  <div class class="order-text" *ngIf="orderToggle">
+    <mat-icon>check_circle</mat-icon>
+    <span>Order Placed Successfully</span>
+  </div>
+  
